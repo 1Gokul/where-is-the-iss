@@ -20,7 +20,8 @@ footer span {
     margin: 0 20px;
 }
 
-footer a:hover,footer a:focus{
+footer a:hover,
+footer a:focus {
     color: whitesmoke !important;
     transition: color 0.2s linear;
 }

@@ -5,11 +5,16 @@ app = Flask(__name__)
 
 locator = ISSLocator()
 
+
 # main page
 @app.route('/')
 def index():
     iss_lat_long = locator.get_lat_long()
-    return render_template('index.html', ist_current_time = iss_lat_long[0], iss_lat = iss_lat_long[1]['latitude'], iss_long = iss_lat_long[1]['longitude'])
+    return render_template('index.html',
+                           ist_current_time=iss_lat_long[0],
+                           iss_lat=iss_lat_long[1]['latitude'],
+                           iss_long=iss_lat_long[1]['longitude'])
+
 
 @app.errorhandler(404)
 def request_page_not_found(error):
