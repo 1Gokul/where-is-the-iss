@@ -58,13 +58,13 @@
         document.getElementById('time').innerHTML = current_time;
 
         // Send a GET request for the ISS's position
-        fetch('http://api.open-notify.org/iss-now.json')
+        fetch('https://api.wheretheiss.at/v1/satellites/25544')
             .then((response) => {
                 return response.json();
             })
             .then((response) => {
-                var current_latitude = response.iss_position.latitude;
-                var current_longitude = response.iss_position.longitude;
+                var current_latitude = response.latitude;
+                var current_longitude = response.longitude;
 
 
                 document.getElementById('lat').innerHTML = current_latitude;
