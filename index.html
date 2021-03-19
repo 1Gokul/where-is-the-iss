@@ -12,7 +12,7 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body class="d-flex flex-column h-100 bg-dark  text-light">
@@ -31,8 +31,8 @@
         <div class="container">
             <h1 class="mt-5 pl-5">Where is the International Space Station right now?</h1>
             <p class="lead">
-                As of <code>{{ ist_current_time }}</code> UTC, the ISS is currently at a latitude <code
-                    class="small">{{ iss_lat }}</code> and longitude <code class="small">{{ iss_long }}</code>.
+                As of <code id="time"></code> UTC, the ISS is currently at a latitude <code id="lat"></code> and
+                longitude <code id="lng"></code>.
             </p>
         </div>
     </main>
@@ -40,7 +40,7 @@
     <!-- Footer -->
     <footer class="footer mt-auto py-3">
         <div class="container text-center">
-            <span class="text-muted">Info taken from Open-Notify's API.</span>
+            <span class="text-muted">Info taken from Open-Notify's API</span>
             <span><a class="text-muted" href="https://1gokul.github.io/">Gokul Viswanath</a></span>
             <span><a class="text-muted" href="https://github.com/1Gokul/where-is-the-iss">GitHub repo</a></span>
         </div>
@@ -51,12 +51,28 @@
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
 
+    <!-- Get and update the current time as well as the position of the ISS -->
+    <script>
+        // Set the current time (in UTC)
+        const current_time = (new Date()).toISOString().slice(11, 19).replace(/-/g, "/").replace("T", " ");
+        document.getElementById('time').innerHTML = current_time;
+
+        // Send a GET request for the ISS's position
+        fetch('http://api.open-notify.org/iss-now.json')
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                var current_latitude = response.iss_position.latitude;
+                var current_longitude = response.iss_position.longitude;
+
+
+                document.getElementById('lat').innerHTML = current_latitude;
+                document.getElementById('lng').innerHTML = current_longitude;
+
+            });
+    </script>
+
 </body>
 
 </html>
-
-
-
-
-
-<!-- <a href="https://github.com/1Gokul/where-is-the-iss">GitHub repo</a> -->
