@@ -67,8 +67,8 @@
                 var current_longitude = response.longitude;
 
 
-                document.getElementById('lat').innerHTML = current_latitude;
-                document.getElementById('lng').innerHTML = current_longitude;
+                document.getElementById('lat').innerHTML = current_latitude.toFixed(3);
+                document.getElementById('lng').innerHTML = current_longitude.toFixed(3);
 
             });
     </script>
