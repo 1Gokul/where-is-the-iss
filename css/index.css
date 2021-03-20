@@ -49,6 +49,11 @@ footer a:focus {
     font-size: larger;
 }
 
+.credits li {
+    margin: 10px;
+    font-size: large;
+}
+
 
 /*  For Mobile */
 @media only screen and (max-width: 600px) {

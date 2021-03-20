@@ -13,10 +13,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
-
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
@@ -38,15 +34,18 @@
     <!-- Page Content -->
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-4 pl-5">Where is the International Space Station right now?</h1>
-            <p class="lead">
-                As of <code id="time"></code> UTC, the ISS is at a latitude <code id="lat"></code> and
-                longitude <code id="lng"></code>.
+            <h1 class="mt-5 pl-5">Credits</h1>
+            <ul class="credits list-unstyled">
+                <li>Position info is from the <a href="https://wheretheiss.at/w/developer">Where the ISS At?</a> API.
+                </li>
+                <li>Maps are from <a href="https://www.openstreetmap.org">OpenStreetMap</a> and <a
+                        href="https://leafletjs.com/">Leaflet.</a></li>
+                <li>ISS image on the map is from <a
+                        href="https://iconarchive.com/show/free-space-icons-by-goodstuff-no-nonsense/international-space-station-icon.html">Good
+                        Stuff No Nonsense.</a></li>
+            </ul>
             </p>
         </div>
-
-        <!-- The map to show the position -->
-        <div id="map"></div>
 
     </main>
 
@@ -59,16 +58,13 @@
         </div>
     </footer>
 
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
 
-    <script src="js/index.js"></script>
 </body>
 
 </html>
