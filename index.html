@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="d-flex flex-column h-100 bg-dark  text-light">
+<body class="d-flex flex-column h-100 bg-dark text-light">
 
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark py-3">
@@ -38,13 +38,14 @@
     <!-- Page Content -->
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5 pl-5">Where is the International Space Station right now?</h1>
+            <h1 class="mt-4 pl-5">Where is the International Space Station right now?</h1>
             <p class="lead">
                 As of <code id="time"></code> UTC, the ISS is currently at a latitude <code id="lat"></code> and
                 longitude <code id="lng"></code>.
             </p>
         </div>
 
+        <!-- The map to show the position -->
         <div id="map"></div>
 
     </main>
@@ -67,48 +68,7 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 
-    <!-- Get and update the current time as well as the position of the ISS -->
-    <script>
-        // Set the current time (in UTC)
-        const current_time = (new Date()).toISOString().slice(11, 19).replace(/-/g, "/").replace("T", " ");
-        document.getElementById('time').innerHTML = current_time;
-
-        // Send a GET request for the ISS's position
-        fetch('https://api.wheretheiss.at/v1/satellites/25544')
-            .then((response) => {
-                return response.json();
-            })
-            .then((response) => {
-                var current_latitude = response.latitude;
-                var current_longitude = response.longitude;
-
-                // initialize Leaflet
-                var map = L.map('map').setView({ lon: current_longitude, lat: current_latitude }, 3);
-
-                // add the OpenStreetMap tiles
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                }).addTo(map);
-
-                // show the scale bar on the lower left corner
-                L.control.scale().addTo(map);
-
-                // show a marker on the map
-                L.marker({ lon: current_longitude, lat: current_latitude }, {
-                    icon: new L.DivIcon({
-                        className: '',
-                        html: '<img class="iss-marker" src="img/international-space-station-icon.png"/>' +
-                            '<span class="iss-marker-label">International Space Station</span>'
-                    })
-                }).addTo(map);
-
-                document.getElementById('lat').innerHTML = current_latitude.toFixed(3);
-                document.getElementById('lng').innerHTML = current_longitude.toFixed(3);
-
-            });
-
-
-    </script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
