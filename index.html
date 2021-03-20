@@ -13,6 +13,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 </head>
 
 <body class="d-flex flex-column h-100 bg-dark  text-light">
@@ -35,11 +36,15 @@
                 longitude <code id="lng"></code>.
             </p>
         </div>
+
+        <div id="map"></div>
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
     </main>
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3">
-        <div class="container text-center">
+        <div class="container">
             <span class="text-muted">Info taken from the <i>Where The ISS At?</i> API</span>
             <span><a class="text-muted" href="https://1gokul.github.io/">Gokul Viswanath</a></span>
             <span><a class="text-muted" href="https://github.com/1Gokul/where-is-the-iss">GitHub repo</a></span>
@@ -66,13 +71,33 @@
                 var current_latitude = response.latitude;
                 var current_longitude = response.longitude;
 
+                // initialize Leaflet
+                var map = L.map('map').setView({ lon: current_longitude, lat: current_latitude }, 3);
+
+                // add the OpenStreetMap tiles
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                }).addTo(map);
+
+                // show the scale bar on the lower left corner
+                L.control.scale().addTo(map);
+
+                // show a marker on the map
+                L.marker({ lon: current_longitude, lat: current_latitude }, {
+                    icon: new L.DivIcon({
+                        className: '',
+                        html: '<img class="iss-marker" src="img/international-space-station-icon.png"/>' +
+                            '<span class="iss-marker-label">International Space Station</span>'
+                    })
+                }).addTo(map);
 
                 document.getElementById('lat').innerHTML = current_latitude.toFixed(3);
                 document.getElementById('lng').innerHTML = current_longitude.toFixed(3);
 
             });
-    </script>
 
+
+    </script>
 </body>
 
 </html>

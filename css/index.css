@@ -16,6 +16,10 @@ main>.container {
     padding: 60px 15px 0;
 }
 
+footer .container {
+    text-align: center;
+}
+
 footer span {
     margin: 0 20px;
 }
@@ -26,11 +30,47 @@ footer a:focus {
     transition: color 0.2s linear;
 }
 
+#map {
+    display: block;
+    margin: 20px auto;
+    width: 900px;
+    height: 500px;
+}
+
+.iss-marker {
+    width: 100px;
+    transform: rotate(135deg);
+    transform-origin: center;
+}
+
+.iss-marker-label {
+    color: black;
+    font-family: Poppins, sans-serif;
+    font-size: larger;
+}
+
 
 /*  For Mobile */
 @media only screen and (max-width: 600px) {
     footer span {
-        margin: 10px 0;
+        margin: 20px 0;
         display: block;
+    }
+
+    #map {
+        width: 100%;
+        height: 400px;
+    }
+
+    .iss-marker {
+        width: 75px;
+    }
+
+    .iss-marker-label {
+        font-size: 11;
+    }
+
+    footer .container {
+        text-align: left;
     }
 }
