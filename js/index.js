@@ -48,19 +48,21 @@ fetch("https://api.wheretheiss.at/v1/satellites/25544")
         document.getElementById("lat").innerHTML = current_latitude;
         document.getElementById("lng").innerHTML = current_longitude;
 
+        // Show the extra details 
         var html =
-            '<span class="extra-info-expander p-2" onclick="expand_details()">Detailed Information<i class="fas fa-caret-right mx-2"></i></span>' +
+            '<span class="extra-info-expander p-2" onclick="expand_details()">Detailed Information' +
+            '<i class="fas fa-caret-right mx-2"></i></span>' +
             '<div class="extra-info-grid my-3"><div>Timestamp:</div><div><code>' + response.timestamp +
-            '</code></div><div>Altitude:</div><div><code> ' +
-            response.altitude +
-            ' km</code></div><div>Day Number:</div><div><code>' +
-            response.daynum +
+            '</code></div><div>Altitude:</div><div><code> ' + response.altitude +
+            ' km</code></div><div>Day Number:</div><div><code>' + response.daynum +
             '</code></div><div>Velocity: </div><div><code>' + response.velocity + ' kmph</code></div>' +
             '<div>Visibility:</div><div><code>' + response.visibility + '</code></div>' +
             '<div>Footprint:</div><div><code>' + response.footprint + '</code></div>' +
             '<div>Solar Latitude:</div><div><code>' + response.solar_lat + '</code></div>' +
             '<div>Solar Latitude:</div><div><code>' + response.solar_lon + '</code></div></div>';
         document.getElementById("extra-info").innerHTML = html;
+
+        // Collapse the details section
         document.getElementsByClassName("extra-info-grid")[0].classList.add("collapsed");
 
     });
