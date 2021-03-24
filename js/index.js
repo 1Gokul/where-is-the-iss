@@ -4,7 +4,7 @@ const current_time = new Date()
     .slice(11, 19)
     .replace(/-/g, "/")
     .replace("T", " ");
-document.getElementById("time").innerHTML = current_time;
+// document.getElementById("time").innerHTML = current_time;
 
 // Send a GET request for the ISS's position
 fetch("https://api.wheretheiss.at/v1/satellites/25544")
@@ -44,12 +44,13 @@ fetch("https://api.wheretheiss.at/v1/satellites/25544")
             }),
         }).addTo(map);
 
+        var basic_info_html = 'As of <a href="https://www.timeanddate.com/worldclock/full.html"><code id="time">' + current_time + '</code></a> UTC, the ISS is at a latitude <code id="lat">' + current_latitude +
+            '</code> and longitude <code id="lng">' + current_longitude + '</code>.'
         // Update the latitude and longitude
-        document.getElementById("lat").innerHTML = current_latitude;
-        document.getElementById("lng").innerHTML = current_longitude;
+        document.getElementById("basic-info").innerHTML = basic_info_html;
 
         // Show the extra details 
-        var html =
+        var extra_info_html =
             '<span class="extra-info-expander p-2" onclick="expand_details()">Detailed Information' +
             '<i class="fas fa-caret-right mx-2"></i></span>' +
             '<div class="extra-info-grid my-3"><div>Timestamp:</div><div><code>' + response.timestamp +
@@ -60,7 +61,7 @@ fetch("https://api.wheretheiss.at/v1/satellites/25544")
             '<div>Footprint:</div><div><code>' + response.footprint + '</code></div>' +
             '<div>Solar Latitude:</div><div><code>' + response.solar_lat + '</code></div>' +
             '<div>Solar Latitude:</div><div><code>' + response.solar_lon + '</code></div></div>';
-        document.getElementById("extra-info").innerHTML = html;
+        document.getElementById("extra-info").innerHTML = extra_info_html;
 
         // Collapse the details section
         document.getElementsByClassName("extra-info-grid")[0].classList.add("collapsed");
